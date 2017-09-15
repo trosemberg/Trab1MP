@@ -24,8 +24,10 @@ int soma_string(char * string_entrada ){
 		if((string_entrada[i]>='0') && (string_entrada [i]<='9')){
 			ndigitos++;
 		}else{
-			for(int j = 0; j<ndigitos;j++){
-				soma = soma + ((int)string_entrada[i-j-1] - ajustenum)*pow(10,j);
+			if(ndigitos<4){
+				for(int j = 0; j<ndigitos;j++){
+					soma = soma + ((int)string_entrada[i-j-1] - ajustenum)*pow(10,j);
+				}
 			}
 			ndigitos = 0;
 		}
