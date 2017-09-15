@@ -20,7 +20,7 @@ CFLAGS=-ansi -Wall -Wextra -I$(IncludeDIR) -pthread -ftest-coverage -fprofile-ar
 # -- ADAPT THIS IN YOUR PROGRAM --
 headers = string_soma.hpp
 mainObject = testa_soma_string_stdin
-objects = string_soma.o testa_string_soma.o
+objects = string_soma.o 
 
 # Set of *.hpp on which the *.cpp depend
 _DEPS = $(headers)
@@ -61,12 +61,12 @@ debug:
 # Call for cppcheck
 .PHONY: cppcheck
 cppcheck:
-	cppcheck --enable=all . -I./include --suppress=missingIncludeSystem
+	cppcheck ./src/string_soma.cpp ./src/testa_soma_string_stdin.cpp --enable=warning
 
 # Call for gcov
 .PHONY: gcov
 gcov:
-	gcov ./src/string_soma.cpp ./src/testa_string_soma.cpp ./src/testa_soma_string_stdin.cpp
+	gcov ./src/string_soma.cpp ./src/testa_soma_string_stdin.cpp
 
 # Call for *.o clean up
 .PHONY: clean
