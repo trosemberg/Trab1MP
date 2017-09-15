@@ -42,6 +42,14 @@ TEST(soma_string,testando_menores_que_999){
 	ASSERT_EQ(10,soma_string(str2));
 }
 
+TEST(soma_string,testando_maiores_que_999){
+	char str1[10] = {'1','0','0','0',cbarra,'n'};
+	char str2[10] = {'1','0','0','0','0',cbarra,'n'};
+
+	ASSERT_EQ(0,soma_string(str1));
+	ASSERT_EQ(0,soma_string(str2));
+}
+
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
