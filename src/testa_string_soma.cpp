@@ -2,14 +2,13 @@
 #include <gtest/gtest.h>
 #include <iostream>
 using namespace std;
-
+//salvando o caracter "\" de uma formar que seja possivel usa-lo
+const static int cbarra = 92;
 
 
 
 TEST(soma_string, primeiroteste) { 
-	char str1[100];
-	strcpy(str1,"\n");
-    
+	char str1[10] = {cbarra,'n'};
     ASSERT_EQ(0, soma_string(str1));
 
 }
@@ -26,11 +25,14 @@ TEST(soma_string, string_pequena_ou_sem_barran) {
 }
 
 TEST(soma_string,testando_soma){
-	char str1[10],str2[10];
-	strcpy(str1,"\n");
-    strcpy(str2,"1\n");
+	char str1[10] = {cbarra,'n'};
+	char str2[10] = {'1',cbarra,'n'};
+	char str3[10] = {'2',cbarra,'n'};
+
+
     ASSERT_EQ(0,soma_string(str1));
     ASSERT_EQ(1,soma_string(str2));
+    ASSERT_EQ(2,soma_string(str3));
 }
 
 
