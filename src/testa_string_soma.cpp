@@ -60,6 +60,16 @@ TEST(soma_string,testeando_soma_com_separador){
 
 }
 
+TEST(soma_string,testeando_soma_com_separadorerrado){
+	char str1[10] = {'1' , ';' , '2' , cbarra ,'n'};
+	char str2[10] = {'1' , 'o' , '1', ',' , '3' , cbarra,'n'};
+
+	ASSERT_EQ(-1,soma_string(str1));
+	ASSERT_EQ(-1,soma_string(str2));
+
+
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
