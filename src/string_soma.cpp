@@ -24,6 +24,11 @@ int soma_string(char * string_entrada ){
 
 		if((string_entrada[i]>='0') && (string_entrada [i]<='9')){
 			ndigitos++;
+			if(ndigitos == 1){
+				nnum++;
+			}
+		}else if ((string_entrada[i]!=',') && ((string_entrada[i]!=cbarra) && (string_entrada[i+1]!='n')) && ((string_entrada[i-1]!=cbarra) && (string_entrada[i]!='n'))){
+			return -1;
 		}else{
 			if(ndigitos<4){
 				for(int j = 0; j<ndigitos;j++){
