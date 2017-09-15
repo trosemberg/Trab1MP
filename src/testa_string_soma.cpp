@@ -23,7 +23,7 @@ TEST(soma_string, string_pequena_ou_sem_barran) {
 
 }
 
-TEST(soma_string,testando_soma){
+TEST(soma_string,testando_soma_sem_separador){
 	char str1[10] = {cbarra,'n'};
 	char str2[10] = {'1',cbarra,'n'};
 	char str3[10] = {'2',cbarra,'n'};
@@ -34,7 +34,13 @@ TEST(soma_string,testando_soma){
     ASSERT_EQ(2,soma_string(str3));
 }
 
+TEST(soma_string,testando_menores_que_999){
+	char str1[10] = {'1','0','0',cbarra,'n'};
+	char str2[10] = {'1','0',cbarra,'n'};
 
+	ASSERT_EQ(100,soma_string(str1));
+	ASSERT_EQ(10,soma_string(str2));
+}
 
 
 int main(int argc, char **argv) {
