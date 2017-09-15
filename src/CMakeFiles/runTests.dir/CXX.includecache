@@ -21,6 +21,8 @@ cstdio
 -
 cstdlib
 -
+cmath
+-
 
 /home/tomas/Área de Trabalho/UNB/Metodos de Programação/Trabalho1MP/src/testa_string_soma.cpp
 string_soma.cpp
