@@ -63,6 +63,11 @@ debug:
 cppcheck:
 	cppcheck --enable=all . -I./include --suppress=missingIncludeSystem
 
+# Call for gcov
+.PHONY: gcov
+gcov:
+	gcov ./src/string_soma.cpp ./src/testa_string_soma.cpp ./src/testa_soma_string_stdin.cpp
+
 # Call for *.o clean up
 .PHONY: clean
 clean:
@@ -80,3 +85,4 @@ help:
 	@echo "                         *(except missingIncludeSystem - cppceck can't find the gtest library)"
 	@echo " make clean......= removes objects from obj directory\n"
 	@echo " For use with program, change variables -headers- and -objects- inside makefile\n\n"
+	@echo "make gcov.....= runs gcov for .cpp files"
