@@ -7,9 +7,10 @@ using namespace std;
 
 
 TEST(soma_string, primeiroteste) { 
-	char teste1[100];
-	cin>> teste1;
-    ASSERT_EQ(1, soma_string(teste1));
+	char *string_entrada;
+	string_entrada = (char *) malloc (strlen("olatudobem"));
+	string_entrada = "olatudobem";
+    ASSERT_EQ(1, soma_string(string_entrada));
 }
 
 int main(int argc, char **argv) {
