@@ -3,7 +3,6 @@
 #include <iostream>
 using namespace std;
 //salvando o caracter "\" de uma formar que seja possivel usa-lo
-const static int cbarra = 92;
 
 
 
