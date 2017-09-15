@@ -70,12 +70,14 @@ TEST(soma_string,testeando_soma_com_separadorerrado){
 
 }
 
-TEST(soma_string,testeando_soma_separadorposerrada){
+TEST(soma_string,testeando_soma_separador_pos_errada){
 	char str1[10] = {'1' , ',' , ',' , cbarra ,'n'};
 	char str2[10] = {',' , '1' , '1', ',' , '3' , cbarra,'n'};
+	char str3[10] = {'1' , '1', ',' , '3' , ',' , cbarra,'n'};
 
 	ASSERT_EQ(-1,soma_string(str1));
 	ASSERT_EQ(-1,soma_string(str2));
+	ASSERT_EQ(-1,soma_string(str3));
 
 
 }

@@ -8,7 +8,7 @@ const static int ajustenum = 48;//constante para pegar o numero na tabela ascci 
 
 
 int soma_string(char * string_entrada ){
-	int tamstr = 0,soma = 0,ndigitos = 0,nnum = 0,sep=1;
+	int tamstr = 0,soma = 0,ndigitos = 0,nnum = 0,sep=2;
 	//tamstr é uma variavel que armazena o tamanho da string de entrada, desta forma 
 	//ndigitos é uma variavel usada para identificar se o numero passado esta na casa das unidades, dezenas ou centenas.
 	//nnum é um contador para o numero de numeros digitados
@@ -35,7 +35,7 @@ int soma_string(char * string_entrada ){
 			return -1;
 		}else if (string_entrada[0]==','){
 				return -1;
-		}else if(string_entrada[i]==',' && sep == 1){
+		}else if(string_entrada[i]==',' && sep != 0){
 			return -1;
 		}else{
 			if(ndigitos<4){
@@ -48,6 +48,10 @@ int soma_string(char * string_entrada ){
 		if(string_entrada[i]==','){
 			sep = 1;
 		}
+	}
+
+	if (sep == 1){
+		return -1;
 	}
 
 	return soma;
