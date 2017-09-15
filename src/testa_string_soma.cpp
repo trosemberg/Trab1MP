@@ -50,6 +50,15 @@ TEST(soma_string,testando_maiores_que_999){
 	ASSERT_EQ(0,soma_string(str2));
 }
 
+TEST(soma_string,testeando_soma_com_separador){
+	char str1[10] = {'1' , ',' , '2' , cbarra ,'n'};
+	char str2[10] = {'1' , ',' , '1', ',' , '3' , cbarra,'n'};
+
+	ASSERT_EQ(3,soma_string(str1));
+	ASSERT_EQ(5,soma_string(str2));
+
+
+}
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
