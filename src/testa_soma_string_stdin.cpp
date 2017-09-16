@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
 int soma;
-char oi[100];
+char oi[1000];
 cout<< "digite a sua entrada:"<<endl;
 cin>> oi; 
 soma = soma_string(oi);
