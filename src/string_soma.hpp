@@ -10,4 +10,6 @@ using namespace std;
 
 int soma_string(char * string_entrada );
 
+void transforma_delimitador(char * string_entrada, int qnt_delimitadores);
+
 #endif
