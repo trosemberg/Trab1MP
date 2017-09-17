@@ -13,7 +13,7 @@ int soma_string(char * string_entrada );
 //função que funciona quando o delimitador é virgula
 int soma_string_virgula(char * new_string_entrada);
 
-//função que recebe a string entrada e atualiza todos os delimitadores em , e coloca a string num formato que possa ser usado pela função soma_string_virgula.
+//função que recebe a string entrada e atualiza todos os delimitadores em virgula e coloca a string num formato que possa ser usado pela função soma_string_virgula.
 char * transforma_delimitador(char * string_entrada);
 
 #endif

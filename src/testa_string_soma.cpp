@@ -98,7 +98,7 @@ TEST(soma_string,test_mais_num_q_pode_linha){
 
 //teste com atualização de delimitador
 TEST(soma_string,test_com_um_delimitador){
-	char str1[] = "//[***]\\n2***3***4\\n";
+	char str1[] = "//[***][!!]\\n2***3***4\\n";
 	char str2[] = "//[@]\\n2@3\\n";
 
 	ASSERT_EQ(9,soma_string(str1));

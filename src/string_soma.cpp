@@ -6,17 +6,62 @@ using namespace std;
 const static int cbarra = 92; //cbarra significa contra barra ou seja "\"
 const static int ajustenum = 48;//constante para pegar o numero na tabela ascci e tranformar em numero de verdade 
 
-
+/*A função soma_string  que serve para chamar a função transforma_delimitador e a partir do resultado dessa função chamar a função soma_string_virgula,
+e retorna o resultado desta ultima função chamada.*/
 int soma_string(char * string_entrada ){
-	int soma = 0;
+	int soma = 0,tamstr;
+	tamstr = strlen(string_entrada);
+	if(tamstr < 2){//saber se o tamanho da string é pelo menos equivalente a "\n"
+		return -1;
+	}else if((string_entrada[tamstr-1]!= 'n') && (string_entrada[tamstr-2]!= cbarra )){ //checa se tudo termina com "\n"
+		return -1;
+	}
+
+	string_entrada = transforma_delimitador(string_entrada);
 
 	soma = soma_string_virgula(string_entrada);
 	return soma;
 }
 
+/*a Função serve para receber a string com delimitador e fazer alterações nele para que,  */
+char * transforma_delimitador(char * string_entrada){
+	int tamstr,num_delimit = 0, tam_delimit1 = 0, cont = 0, pos_ult_colch = 0;
+	//tam_delimit1 armazena o tamanho do primeiro delimitador
+	//pos_ult_colch serve para armazenar a posição do ultimo colchete que fecha para que se possa checar se apos ele vem um \n
+	char erro[] = "oi"; //char criado para string_entrada receber seu valor caso nao tenha um "\n" após o ultimo delimitador
+	tamstr = strlen(string_entrada);
+	if((string_entrada[0] == '/') && (string_entrada[1] == '/') && (string_entrada[2] == '[')){ // significa que vai ter novo delimitador
+		for(int i = 2; i < tamstr; i++){//for a partir da pos q começa o delimitador
+			if(string_entrada[i] == '['){//if para somar  o numero de delimitadores
+				num_delimit++;
+				cont = i+1;
+				while((string_entrada[cont] != ']')){//quando começa um delimitarod, faz a contagem do tamanho dele
+					cont++;
+					if(num_delimit ==1){
+					tam_delimit1++;
+					}
+					if(cont == tamstr){
+						break;
+					}
+				}
+			}
+			if (string_entrada[i] == ']'){
+				pos_ult_colch = i;
+			}
+		}
+		if((string_entrada[pos_ult_colch+1] != cbarra) || (string_entrada[pos_ult_colch+2] != 'n') ){
+			string_entrada = erro;
+			return	string_entrada;
+		}
+			cout << "           "<<tam_delimit1<<endl;
+	}
+	return string_entrada;
+}
+
+
 /*A função soma string virgula funciona da seguinte forma, primeiramente checa-se se a string passada possui no minimo o tamanho para se caber a "\n"
 */
-int soma_string_virgula(char * new_string_entrada){
+int soma_string_virgula(char * string_entrada){
 
 	int tamstr = 0,soma = 0,ndigitos = 0,nnum = 0,sep=2;
 	//tamstr é uma variavel que armazena o tamanho da string de entrada, desta forma 
@@ -26,35 +71,30 @@ int soma_string_virgula(char * new_string_entrada){
 	saber se esta encontrando dois separadores sem ter numero entre eles,ou se ainda nao apareceu nenhum numero antes do primeiro separador,por isso começamos
 	a, o que deve acarretar numa entrada invalida*/
 
-	tamstr = strlen(new_string_entrada);
-	if(tamstr < 2){//saber se o tamanho da string é pelo menos equivalente a "\n"
-		return -1;
-	}else if((new_string_entrada[tamstr-1]!= 'n') && (new_string_entrada[tamstr-2]!= cbarra )){ //checa se tudo termina com "\n"
-		return -1;
-	}
+	tamstr = strlen(string_entrada);
 	for (int i = 0; i < tamstr; i++){//esse for varre toda a string passada para a função.
-		if((new_string_entrada[i]>='0') && (new_string_entrada [i]<='9')){ //checa se a posição atual do array contem um numero
+		if((string_entrada[i]>='0') && (string_entrada [i]<='9')){ //checa se a posição atual do array contem um numero
 			sep=0;//se contiver numero, a variavel sep que indica a quantidade de separadores seguidos é atualizada para 0
 			ndigitos++;//a variavel ndigitos é incrementado para que seja possivel saber o tamanho dos numeros.
 			if(ndigitos == 1){//sempre que o numero de digitos for de 1, o numero de numeros é incrementado para que seja possivel saber quantos numeros estao sendo somados
 				nnum++;
 			}
-		}else if ((new_string_entrada[i]!=',') && ((new_string_entrada[i]!=cbarra) && (new_string_entrada[i+1]!='n')) && ((new_string_entrada[i]!='n') && (new_string_entrada[i-1]!=cbarra))){
+		}else if ((string_entrada[i]!=',') && ((string_entrada[i]!=cbarra) && (string_entrada[i+1]!='n')) && ((string_entrada[i]!='n') && (string_entrada[i-1]!=cbarra))){
 			return -1;//se a posição do array nao contiver nenhum numero, checa se ela tem uma virgula ou um "\" de um "\n" ou um "n" do "\n"
-		}else if(new_string_entrada[i]==',' && sep != 0){//checa a presença de duas virgulas sem numero entre elas ou se a string recebida começou com delimitador
+		}else if(string_entrada[i]==',' && sep != 0){//checa a presença de duas virgulas sem numero entre elas ou se a string recebida começou com delimitador
 			return -1;
 		}else{
 			if(ndigitos<4){//checa se o numero tem menos de 4digitos, considerando que numeros maiores que 1000 serão ignorados
 				for(int j = 0; j<ndigitos;j++){
-					soma = soma + ((int)new_string_entrada[i-j-1] - ajustenum)*pow(10,j);
+					soma = soma + ((int)string_entrada[i-j-1] - ajustenum)*pow(10,j);
 				}
 			}
 			ndigitos = 0;//zera o numero de digitos do numero analisado para que o proximos possa ser
 		}
-		if (((new_string_entrada[i]==cbarra) && (new_string_entrada[i+1]=='n')) || ((new_string_entrada[i]=='n') && (new_string_entrada[i-1]==cbarra))){
+		if (((string_entrada[i]==cbarra) && (string_entrada[i+1]=='n')) || ((string_entrada[i]=='n') && (string_entrada[i-1]==cbarra))){
 			nnum = 0;//aqui se é checado se a posição atual do array é um"\n" para que se zere a quantidade de numeros nessa linha
 		}
-		if(new_string_entrada[i]==','){//diz que a posição atual é uma virgula para que na proxima iteração possa se saber se ha virgulas seguidas
+		if(string_entrada[i]==','){//diz que a posição atual é uma virgula para que na proxima iteração possa se saber se ha virgulas seguidas
 			sep = 1;
 		}
 		if(nnum>3){//checa se a quantidade de numeros na mesma linha é maior que 3, pois se for, deve-se retornar -1.
@@ -62,7 +102,7 @@ int soma_string_virgula(char * new_string_entrada){
 		}
 	}
 
-	if (sep == 1){
+	if (sep == 1){// checa se o sep é igual a 1, o que indicaria que a string terminou com uma virgula que nao foi usada para somar dois numeros.
 		return -1;
 	}
 
