@@ -25,36 +25,80 @@ int soma_string(char * string_entrada ){
 
 /*a Função serve para receber a string com delimitador e fazer alterações nele para que,  */
 char * transforma_delimitador(char * string_entrada){
-	int tamstr,num_delimit = 0, tam_delimit1 = 0, cont = 0, pos_ult_colch = 0;
-	//tam_delimit1 armazena o tamanho do primeiro delimitador
-	//pos_ult_colch serve para armazenar a posição do ultimo colchete que fecha para que se possa checar se apos ele vem um \n
-	char erro[] = "oi"; //char criado para string_entrada receber seu valor caso nao tenha um "\n" após o ultimo delimitador
+	int tamstr,num_delimit = 0, tam_delimit = 0, pos_ult_colch = 0,temp = 0, flag_colch = 0, flag_new = 0, flag_subst = 0;
+	//a variavel flag_colch é setada para 1 ao encontrar o primeiro "\n" se a função tiver novos delimitadores, para que se for encontrado algum colchete apos
+	//esse "\n" ja retorne uma saida invalida.Pois se isso nao for feito, poderia acarretar em news sem delete.
+	char string_temp[strlen(string_entrada+1)];
+	char * delimitador;
+	strcpy(string_temp,string_entrada);
+	//tam_delimit armazena o tamanho do primeiro delimitador
 	tamstr = strlen(string_entrada);
 	if((string_entrada[0] == '/') && (string_entrada[1] == '/') && (string_entrada[2] == '[')){ // significa que vai ter novo delimitador
 		for(int i = 2; i < tamstr; i++){//for a partir da pos q começa o delimitador
+			if((string_entrada[i] == cbarra) && (string_entrada[i+1] == 'n') && (flag_colch == 0)){//teste para saber se encontrou o primeiro '\n'
+				flag_colch = 1;
+			}
+			if((flag_colch == 1) && ((string_entrada[i] == '[') || (string_entrada[i] == ']' ))){//se encontrar '[' ou ']'apos o primeiro \n, acaba
+				strcpy(string_entrada,"n");
+				return	string_entrada;
+			}
 			if(string_entrada[i] == '['){//if para somar  o numero de delimitadores
 				num_delimit++;
-				cont = i+1;
-				while((string_entrada[cont] != ']')){//quando começa um delimitarod, faz a contagem do tamanho dele
-					cont++;
-					if(num_delimit ==1){
-					tam_delimit1++;
-					}
-					if(cont == tamstr){
-						break;
-					}
-				}
 			}
-			if (string_entrada[i] == ']'){
+			if (string_entrada[i] == ']'){//atualiza a posição do ultimo colchete ']'
 				pos_ult_colch = i;
 			}
 		}
-		if((string_entrada[pos_ult_colch+1] != cbarra) || (string_entrada[pos_ult_colch+2] != 'n') ){
-			string_entrada = erro;
+		if((string_entrada[pos_ult_colch+1] != cbarra) || (string_entrada[pos_ult_colch+2] != 'n') ){ //acaba se apos ultimo ']' nao tiver um \n
+			strcpy(string_entrada,"n");
 			return	string_entrada;
 		}
-			cout << "           "<<tam_delimit1<<endl;
+		for(int i = 0; i < tamstr; i++){//apos saber a qnt de delimitadores faz uma nova varredura no array
+			if(string_entrada[i] == '['){//achou o começo de um delimitador
+				temp = i + 1;
+				while(string_entrada[temp] != ']'){//enquanto nao acha o final do delimitardor
+					tam_delimit++;//atualiza o tamanho deste delimitador
+					temp++;
+				}
+				delimitador = new char[tam_delimit];//cria uma char *com o tamanho do delimitador
+				for(int j = 0; j<tam_delimit;j++){//salva no delimitador seus caracteres
+					flag_new = 1;//fala que foi alocado dinamicamente
+					delimitador[j] = string_entrada[temp - tam_delimit + j];
+				}
+				for(int k = i ; k < tamstr; k ++ ){//varre todo o resto do array atualizando o delimitador para virgula 
+					if(string_entrada[k] == delimitador[0]){//achou um lugar pra atualizar o delimitador
+						flag_subst = 1;
+						for(int l = 0; l < tam_delimit; l++){
+							if((string_entrada[k+l] == delimitador[l]) && (flag_subst == 1)){
+								flag_subst = 1;
+							}else{
+								flag_subst = 0;
+							}
+						}
+						if(flag_subst == 1){
+							string_temp[k] = ',';
+							for(int m = k+1 ; m <= tamstr; m++){
+								string_temp[m] = string_entrada[m + tam_delimit - 1];
+							}
+							tamstr = strlen(string_temp);
+							strcpy(string_entrada,string_temp);
+						}
+					}
+				}
+			}
+			else{
+				string_temp[i] = string_entrada[i];
+			}
+			if(flag_new == 1 ){
+				delete[] delimitador;
+				flag_new = 0; 
+			}
+			tamstr = strlen(string_temp);
+			strcpy(string_entrada,string_temp);
+		}
+		cout<<string_temp;
 	}
+	strcpy(string_entrada,string_temp);
 	return string_entrada;
 }
 
