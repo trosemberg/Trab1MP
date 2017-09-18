@@ -10,7 +10,9 @@ LibDIREC =./lib/
 LibDIR =./lib/
 IncludeDIR =./include/
 CppDIR=./src/
-ObjDIR=./src/obj/
+ObjDIR./src/obj/=
+GcovObjDIR=./src/gcov
+GcovresultDIR=./gcovresultados
 CC=g++
 DB=gdb
 CFLAGS=-ansi -Wall -Wextra -I$(IncludeDIR) -pthread -ftest-coverage -fprofile-arcs
@@ -45,6 +47,8 @@ prepareDIR:
 	mkdir -p $(IncludeDIR)
 	mkdir -p $(CppDIR)
 	mkdir -p $(ObjDIR)
+	mkdir -p $(GcovObjDIR)
+	mkdir -p $(GcovresultDIR)
 	mv *.hpp $(IncludeDIR); true
 	mv *.cpp $(CppDIR); true
 
@@ -67,6 +71,7 @@ cppcheck:
 .PHONY: gcov
 gcov:
 	gcov ./src/string_soma.cpp ./src/testa_soma_string_stdin.cpp
+
 
 # Call for *.o clean up
 .PHONY: clean

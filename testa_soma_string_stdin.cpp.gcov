@@ -1,16 +1,15 @@
         -:    0:Source:src/testa_soma_string_stdin.cpp
-        -:    0:Programs:1
+        -:    0:Programs:2
         -:    1:#include <iostream>
         -:    2:#include "string_soma.hpp"
         -:    3:using namespace std;
         -:    4:
         -:    5:
-       12:    6:int main(){
+        2:    6:int main(){
         -:    7:int soma;
-        -:    8:char oi[100];
-       12:    9:cout<< "digite a sua entrada:"<<endl;
-       12:   10:cin>> oi; 
-       12:   11:soma = soma_string(oi);
-       12:   12:cout<< "A soma é igual a: "<< soma <<endl;
-       12:   13:return 0;
-       36:   14:}
+        -:    8:char oi[1000];
+        2:    9:cin>> oi; 
+        2:   10:soma = soma_string(oi);
+        2:   11:cout<<soma <<endl;
+        2:   12:return 0;
+        6:   13:}
