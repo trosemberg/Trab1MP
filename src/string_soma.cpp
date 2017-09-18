@@ -56,6 +56,7 @@ char * transforma_delimitador(char * string_entrada){
 		for(int i = 0; i < tamstr; i++){//apos saber a qnt de delimitadores faz uma nova varredura no array
 			if(string_entrada[i] == '['){//achou o começo de um delimitador
 				temp = i + 1;
+				cout<< "valor de i : "<< i << endl;
 				while(string_entrada[temp] != ']'){//enquanto nao acha o final do delimitardor
 					tam_delimit++;//atualiza o tamanho deste delimitador
 					temp++;
@@ -93,9 +94,16 @@ char * transforma_delimitador(char * string_entrada){
 				delete[] delimitador;
 				flag_new = 0; 
 			}
+			tam_delimit = 0;
+			flag_subst = 0;
 			tamstr = strlen(string_temp);
 			strcpy(string_entrada,string_temp);
 		}
+
+
+
+
+
 		cout<<string_temp;
 	}
 	strcpy(string_entrada,string_temp);
