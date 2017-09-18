@@ -16,7 +16,6 @@ int soma_string(char * string_entrada ){
 	}else if((string_entrada[tamstr-1]!= 'n') && (string_entrada[tamstr-2]!= cbarra )){ //checa se tudo termina com "\n"
 		return -1;
 	}
-
 	string_entrada = transforma_delimitador(string_entrada);
 
 	soma = soma_string_virgula(string_entrada);
@@ -56,7 +55,7 @@ char * transforma_delimitador(char * string_entrada){
 		for(int i = 0; i < tamstr; i++){//apos saber a qnt de delimitadores faz uma nova varredura no array
 			if(string_entrada[i] == '['){//achou o começo de um delimitador
 				temp = i + 1;
-				while(string_entrada[temp] != ']'){//enquanto nao acha o final do delimitardor
+				while(string_entrada[temp] != ']' && string_entrada[temp] != '\0' ){//enquanto nao acha o final do delimitardor ou o final da string entrada
 					tam_delimit++;//atualiza o tamanho deste delimitador
 					temp++;
 				}
@@ -67,27 +66,24 @@ char * transforma_delimitador(char * string_entrada){
 				}
 				for(int k = i ; k < tamstr; k ++ ){//varre todo o resto do array atualizando o delimitador para virgula 
 					if(string_entrada[k] == delimitador[0]){//achou um lugar pra atualizar o delimitador
-						flag_subst = 1;
-						for(int l = 0; l < tam_delimit; l++){
+						flag_subst = 1;//indica que havera substituição do delimitador pela virgula
+						for(int l = 0; l < tam_delimit; l++){ //for serve para checar se era o delimitador ou era algo que parecia ser o delimitador
 							if((string_entrada[k+l] == delimitador[l]) && (flag_subst == 1)){
 								flag_subst = 1;
 							}else{
 								flag_subst = 0;
 							}
 						}
-						if(flag_subst == 1){
+						if(flag_subst == 1){//era realmente o delimitador, logo trocaremos ele por virgula
 							string_temp[k] = ',';
-							for(int m = k+1 ; m <= tamstr; m++){
-								string_temp[m] = string_entrada[m + tam_delimit - 1];
+							for(int m = k+1 ; m <= tamstr; m++){//trocado o primeiro caracter por virgula, copia o resto do string_entrada para o string_temṕ
+								string_temp[m] = string_entrada[m + tam_delimit - 1];//a partir do ponto que terminou o delimitador em string_entrada. 
 							}
-							tamstr = strlen(string_temp);
-							strcpy(string_entrada,string_temp);
+							tamstr = strlen(string_temp);//atualiza o valor do tamanho da string sendo modificada
+							strcpy(string_entrada,string_temp);//atualiza string_entrada para ela mesma com os delimitadores alterados por virgula
 						}
 					}
 				}
-			}
-			else{
-				string_temp[i] = string_entrada[i];
 			}
 			if(flag_new == 1 ){
 				delete[] delimitador;
@@ -98,8 +94,8 @@ char * transforma_delimitador(char * string_entrada){
 			tamstr = strlen(string_temp);
 			strcpy(string_entrada,string_temp);
 		}
-		for(int n = (4+3*num_delimit) ;n <= tamstr; n++){
-			string_temp[n - 4-3*num_delimit] = string_entrada[n];
+		for(int i = (4+3*num_delimit) ;i <= tamstr; i++){
+			string_temp[i - 4-3*num_delimit] = string_entrada[i];
 		}
 	}
 	strcpy(string_entrada,string_temp);
@@ -118,8 +114,12 @@ int soma_string_virgula(char * string_entrada){
 	/*a variavel sep, server pra contar o separador,se encontrar um separador ela é setada para 1, se encontrar um numero ela é setada para 0, seta forma é possivel 
 	saber se esta encontrando dois separadores sem ter numero entre eles,ou se ainda nao apareceu nenhum numero antes do primeiro separador,por isso começamos
 	a, o que deve acarretar numa entrada invalida*/
-
 	tamstr = strlen(string_entrada);
+	if(tamstr < 2){//saber se o tamanho da string é pelo menos equivalente a "\n"
+		return -1;
+	}else if((string_entrada[tamstr-1]!= 'n') && (string_entrada[tamstr-2]!= cbarra )){ //checa se tudo termina com "\n"
+		return -1;
+	}
 	for (int i = 0; i < tamstr; i++){//esse for varre toda a string passada para a função.
 		if((string_entrada[i]>='0') && (string_entrada [i]<='9')){ //checa se a posição atual do array contem um numero
 			sep=0;//se contiver numero, a variavel sep que indica a quantidade de separadores seguidos é atualizada para 0

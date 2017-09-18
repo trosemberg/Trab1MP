@@ -108,7 +108,32 @@ TEST(soma_string,test_com_delimitador){
 
 }
 
+
+TEST(soma_string,Testes_adicionais){
+	char str1[] = "1,2[\\n";
+	char str2[] = "//[#]1,2#3\\n";
+	char str3[] = "//[#]1],2#3\\n";
+	char str4[] = "//[#]1,2[]#3\\n";
+	char str5[] = "1\\n\\n\\n\\n\\n\\n,2";
+	char str6[] = "//[!][@][#][$]\\n1!@2\\n";
+	char str7[] = "";
+	char str8[] = "";
+	char str9[] = "";
+	char str10[] = "";
+
+	ASSERT_EQ(-1,soma_string(str1));
+	ASSERT_EQ(-1,soma_string(str2));
+	ASSERT_EQ(-1,soma_string(str3));
+	ASSERT_EQ(-1,soma_string(str4));
+	ASSERT_EQ(-1,soma_string(str5));
+	ASSERT_EQ(-1,soma_string(str6));
+	ASSERT_EQ(-1,soma_string(str7));
+	ASSERT_EQ(-1,soma_string(str8));
+	ASSERT_EQ(-1,soma_string(str9));
+	ASSERT_EQ(-1,soma_string(str10));
 	
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
