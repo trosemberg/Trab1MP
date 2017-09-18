@@ -1,3 +1,0 @@
-/home/tomas/Área de Trabalho/UNB/Metodos de Programação/Trabalho1MP/src/CMakeFiles/edit_cache.dir
-/home/tomas/Área de Trabalho/UNB/Metodos de Programação/Trabalho1MP/src/CMakeFiles/rebuild_cache.dir
-/home/tomas/Área de Trabalho/UNB/Metodos de Programação/Trabalho1MP/src/CMakeFiles/runTests.dir

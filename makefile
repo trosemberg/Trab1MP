@@ -10,19 +10,19 @@ LibDIREC =./lib/
 LibDIR =./lib/
 IncludeDIR =./include/
 CppDIR=./src/
-ObjDIR./src/obj/=
-GcovObjDIR=./src/gcov
-GcovresultDIR=./gcovresultados
+ObjDIR=./src/obj/
+GcovDIR=./src/gcov/
 CC=g++
 DB=gdb
-CFLAGS=-ansi -Wall -Wextra -I$(IncludeDIR) -pthread -ftest-coverage -fprofile-arcs
+CFLAGS=-ansi -Wall -Wextra -I$(IncludeDIR)
+CFLAGSTEST=-ansi -Wall -Wextra -I$(IncludeDIR) -pthread -ftest-coverage -fprofile-arcs -lgtest
 # LIBS=-lgtest
 
 # Vars:
 # -- ADAPT THIS IN YOUR PROGRAM --
 headers = string_soma.hpp
 mainObject = testa_soma_string_stdin
-objects = string_soma.o 
+objects = string_soma.o
 
 # Set of *.hpp on which the *.cpp depend
 _DEPS = $(headers)
@@ -47,8 +47,7 @@ prepareDIR:
 	mkdir -p $(IncludeDIR)
 	mkdir -p $(CppDIR)
 	mkdir -p $(ObjDIR)
-	mkdir -p $(GcovObjDIR)
-	mkdir -p $(GcovresultDIR)
+	mkdir -p $(GcovDIR)
 	mv *.hpp $(IncludeDIR); true
 	mv *.cpp $(CppDIR); true
 
@@ -67,27 +66,54 @@ debug:
 cppcheck:
 	cppcheck ./src/string_soma.cpp ./src/testa_soma_string_stdin.cpp --enable=warning
 
+# Call for gteste
+.PHONY: gteste
+gteste:
+	$(CC) -c -o $(ObjDIR)testa_string_soma.o $(CppDIR)testa_string_soma.cpp $(CFLAGSTEST)
+	$(CC) -g -o testa_string_soma $(ObjDIR)testa_string_soma.o $(CFLAGSTEST)
+	mv  -v $(ObjDIR)*.gcno $(GcovDIR)
+	
+# Call for rungteste
+.PHONY: rungteste
+rungteste:
+	./testa_string_soma
+	mv  -v $(ObjDIR)*.gcda $(GcovDIR)
+
 # Call for gcov
 .PHONY: gcov
 gcov:
-	gcov ./src/string_soma.cpp ./src/testa_soma_string_stdin.cpp
+	mv  -v $(GcovDIR)*.gcda $(CppDIR)
+	mv  -v $(GcovDIR)*.gcno $(CppDIR)
+	gcov $(CppDIR)testa_string_soma.cpp
+	mv  -v $(CppDIR)*.gcno $(GcovDIR)
+	mv  -v $(CppDIR)*.gcda $(GcovDIR)
+	mv  -v ./*.gcov $(GcovDIR)
 
 
 # Call for *.o clean up
 .PHONY: clean
 clean:
-	rm $(ObjDIR)*.o
+	rm -f $(ObjDIR)*.o
+	rm -f $(GcovDIR)*.gcno
+	rm -f $(GcovDIR)*.gcda
+	rm -f $(GcovDIR)*.gcov
+	rm -f ./testa_string_soma
+	rm -f ./testa_soma_string_stdin
+
 
 # Call for help with this makefile's commands
 .PHONY: help
 help:
 	@echo "\n\t Makefile\n"
-	@echo " make............= compiles program"
+	@echo " make............= compiles testa_soma_string_stdin "
 	@echo " make prepareDIR.= prepares project in the "lib include src/obj" structure (use this if all files are with this makefile)"
 	@echo " make execute....= executes succesfully compiled program"
 	@echo " make debug......= (gdb) debugs succesfully compiled program"
 	@echo " make cppcheck...= invokes cppcheck on all .cpp files in the directory, checking for all types of messages"
 	@echo "                         *(except missingIncludeSystem - cppceck can't find the gtest library)"
 	@echo " make clean......= removes objects from obj directory\n"
-	@echo " For use with program, change variables -headers- and -objects- inside makefile\n\n"
-	@echo "make gcov.....= runs gcov for .cpp files"
+	@echo " make gteste.....= compiles testa_string_soma que é a bateria de teste do gtest"
+	@echo " make rungteste..= roda o testa_string_soma"
+	@echo "\n\t End of Makefile Help\n"
+
+
