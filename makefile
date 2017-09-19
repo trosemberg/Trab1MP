@@ -39,7 +39,8 @@ $(ObjDIR)%.o: $(CppDIR)%.cpp $(DEPS)
 # Creates executable (Linux)
 $(mainObject): $(OBJ)
 	$(CC) -g -o $@ $^ $(CFLAGS) $(LIBS)
-
+	touch entrada.txt
+	touch saida.txt
 # Gets the files and organize in the lib include src/obj structure
 .PHONY: prepareDIR
 prepareDIR:
@@ -79,6 +80,13 @@ rungteste:
 	./testa_string_soma
 	mv  -v $(ObjDIR)*.gcda $(GcovDIR)
 
+# Call for valgrind
+.PHONY: valgrind
+valgrind:
+	valgrind ./testa_string_soma
+	mv  -v $(ObjDIR)*.gcda $(GcovDIR)
+
+
 # Call for gcov
 .PHONY: gcov
 gcov:
@@ -89,6 +97,10 @@ gcov:
 	mv  -v $(CppDIR)*.gcda $(GcovDIR)
 	mv  -v ./*.gcov $(GcovDIR)
 
+# Call for run
+.PHONY: run
+run:
+	./testa_soma_string_stdin <entrada.txt >saida.txt
 
 # Call for *.o clean up
 .PHONY: clean
@@ -99,7 +111,9 @@ clean:
 	rm -f $(GcovDIR)*.gcov
 	rm -f ./testa_string_soma
 	rm -f ./testa_soma_string_stdin
-
+	rm -f ./entrada.txt
+	rm -f ./saida.txt
+	
 
 # Call for help with this makefile's commands
 .PHONY: help
@@ -114,6 +128,8 @@ help:
 	@echo " make clean......= removes objects from obj directory\n"
 	@echo " make gteste.....= compiles testa_string_soma que é a bateria de teste do gtest"
 	@echo " make rungteste..= roda o testa_string_soma"
+	@echo " make valgrind...= roda o valgrind no gteste, pois ele tem varios testes em que se aloca dinamicamente" 
+	@echo " make run........= roda testa_string_soma no formato mandado nas diretivas do prog" 
 	@echo "\n\t End of Makefile Help\n"
 
 
