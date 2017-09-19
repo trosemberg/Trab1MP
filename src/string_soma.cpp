@@ -1,35 +1,29 @@
-
 #include "string_soma.hpp"
-
-
-//constantes globais com base na tabela ascci
-const static int ajustenum = 48;//constante para pegar o numero na tabela ascci e tranformar em numero de verdade 
 
 /*A função soma_string  que serve para chamar a função transforma_delimitador e a partir do resultado dessa função chamar a função soma_string_virgula,
 e retorna o resultado desta ultima função chamada.*/
 int soma_string(char * string_entrada ){
-	int soma = 0,tamstr;
-	tamstr = strlen(string_entrada);
+	int tamstr = strlen(string_entrada);
 	if(tamstr < 1){//saber se o tamanho da string é pelo menos equivalente a "\n"
 		return -1;
 	}else if(string_entrada[tamstr-1]!= '\n'){ //checa se tudo termina com "\n"
 		return -1;
 	}
 	string_entrada = transforma_delimitador(string_entrada);
-	soma = soma_string_virgula(string_entrada);
+	int soma = soma_string_virgula(string_entrada);
 	return soma;
 }
 
 /*a Função serve para receber a string com delimitador e fazer alterações nele para que,  */
 char * transforma_delimitador(char * string_entrada){
-	int tamstr,num_delimit = 0, tam_delimit = 0, pos_ult_colch = 0,temp = 0, flag_colch = 0, flag_new = 0, flag_subst = 0;
+	int num_delimit = 0, tam_delimit = 0, pos_ult_colch = 0,temp = 0, flag_colch = 0, flag_new = 0, flag_subst = 0;
 	//a variavel flag_colch é setada para 1 ao encontrar o primeiro "\n" se a função tiver novos delimitadores, para que se for encontrado algum colchete apos
 	//esse "\n" ja retorne uma saida invalida.Pois se isso nao for feito, poderia acarretar em news sem delete.
 	char string_temp[strlen(string_entrada+1)];
 	char * delimitador;
 	strcpy(string_temp,string_entrada);
 	//tam_delimit armazena o tamanho do primeiro delimitador
-	tamstr = strlen(string_entrada);
+	int tamstr = strlen(string_entrada);
 	if((string_entrada[0] == '/') && (string_entrada[1] == '/') && (string_entrada[2] == '[')){ // significa que vai ter novo delimitador
 		for(int i = 2; i < tamstr; i++){//for a partir da pos q começa o delimitador
 			if((string_entrada[i] == '\n') && (flag_colch == 0)){//teste para saber se encontrou o primeiro '\n'
@@ -104,15 +98,15 @@ char * transforma_delimitador(char * string_entrada){
 /*A função soma string virgula funciona da seguinte forma, primeiramente checa-se se a string passada possui no minimo o tamanho para se caber a "\n"
 */
 int soma_string_virgula(char * string_entrada){
-
-	int tamstr = 0,soma = 0,ndigitos = 0,nnum = 0,sep=2;
+	const int ajustenum = 48;
+	int soma = 0,ndigitos = 0,nnum = 0,sep=2;
 	//tamstr é uma variavel que armazena o tamanho da string de entrada, desta forma 
 	//ndigitos é uma variavel usada para identificar se o numero passado esta na casa das unidades, dezenas ou centenas.
 	//nnum é um contador para o numero de numeros digitados
 	/*a variavel sep, server pra contar o separador,se encontrar um separador ela é setada para 1, se encontrar um numero ela é setada para 0, seta forma é possivel 
 	saber se esta encontrando dois separadores sem ter numero entre eles,ou se ainda nao apareceu nenhum numero antes do primeiro separador,por isso começamos
 	a, o que deve acarretar numa entrada invalida*/
-	tamstr = strlen(string_entrada);
+	int tamstr = strlen(string_entrada);
 	if(tamstr < 1){//saber se o tamanho da string é pelo menos equivalente a "\n"
 		return -1;
 	}else if(string_entrada[tamstr-1]!= '\n'){ //checa se tudo termina com "\n"
