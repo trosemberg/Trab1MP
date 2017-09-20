@@ -1,7 +1,18 @@
+/**
+ * @file string_soma.cpp
+ * @author Tomás Rosário Rosemberg
+ * @date 20/09/2017
+ * @brief Arquivo contendo as implementações das funções soma_string,ManipulaStringEntrada e DelimitadorViraVirgula
+ *
+ * 
+ * @see https://github.com/trosemberg/Trabalho1MP
+ * 
+ */
 #include "string_soma.hpp"
 
-/**A função soma_string que serve para chamar a função ManipulaStringEntrada e a partir do resultado dessa função chamar a função 
-SomaStringVirgula, e retorna o resultado desta ultima função chamada.*/
+/** @brief A função soma_string que serve para chamar a função ManipulaStringEntrada e a partir do resultado dessa função chamar a função 
+*SomaStringVirgula, e retorna o resultado desta ultima função chamada.
+*/
 int soma_string(char * string_entrada ){
   int tamstr = strlen(string_entrada);
   if (tamstr < 1) {//saber se o tamanho da string é pelo menos equivalente a "\n"
@@ -14,10 +25,11 @@ int soma_string(char * string_entrada ){
   return soma;
 }
 
-/**a Função serve para receber a e separar se elas começam ou nao com delimitador, se elas começarem com delimitador
-chama a função DelimitadorViraVirgula para transformar os delimitadores em virgula e atualizar o formato da string_entrada
-para retornar a string_entrada. Caso a string nao comece com delimitador ela retorna a string_entrada sem precisar 
-chamar a DelimitadorViraVirgula*/
+/** @brief a Função serve para receber a e separar se elas começam ou nao com delimitador, se elas começarem com delimitador
+*chama a função DelimitadorViraVirgula para transformar os delimitadores em virgula e atualizar o formato da string_entrada
+*para retornar a string_entrada. Caso a string nao comece com delimitador ela retorna a string_entrada sem precisar 
+*chamar a DelimitadorViraVirgula
+*/
 char * ManipulaStringEntrada(char * string_entrada){
   int num_delimit = 0, pos_ult_colch = 0, flag_colch = 0;
   //a variavel flag_colch é setada para 1 ao encontrar o primeiro "\n" se a função tiver novos delimitadores, para que se for encontrado algum colchete apos
@@ -48,11 +60,12 @@ char * ManipulaStringEntrada(char * string_entrada){
   return string_entrada;
 }
 
-/**A funcao DelimitadorViraVirgula recebe a string_entrada que declara novos delimitadores, armazena com uma alocação 
-dinamica o primeiro delimitador, e varre a string_entrada copiando seu valor caracter a caracter em um char temporario
-(denominado string_temp), porem onde se encontra o delimitador, atualizando esse valor para virgula. Depois string_entrada
-recebe o valor dessa string_temp para que possa, pelo mesmo processo, analisar os delimitadores seguintes. Depois de tudo 
-atualiza string_entrada para ela mesma, porem com seus valores apos o primeiro '\n' e retorna esse ponteiro para char.*/
+/** @brief A funcao DelimitadorViraVirgula recebe a string_entrada que declara novos delimitadores, armazena com uma alocação 
+*dinamica o primeiro delimitador, e varre a string_entrada copiando seu valor caracter a caracter em um char temporario
+*(denominado string_temp), porem onde se encontra o delimitador, atualizando esse valor para virgula. Depois string_entrada
+*recebe o valor dessa string_temp para que possa, pelo mesmo processo, analisar os delimitadores seguintes. Depois de tudo 
+*atualiza string_entrada para ela mesma, porem com seus valores apos o primeiro '\n' e retorna esse ponteiro para char.
+*/
 char * DelimitadorViraVirgula(int num_delimit, char * string_entrada){
   int  flag_new = 0, flag_subst = 0,tam_delimit = 0, temp = 0;
   char * delimitador;
@@ -108,11 +121,12 @@ char * DelimitadorViraVirgula(int num_delimit, char * string_entrada){
   return string_entrada;
 }
 
-/**A função SomaStringVirgula faz todos os testes ordenados pela especificaçoes do trabalho tendo como unico 
-delimitador a virgula. Checa se a string_entrada tem tamanho no minimo 1, para caber o '\n', se ela termina em \n,
-se é contituida de numeros, virgulas e '\n', se tem duas virgulas seguidas e se possui numero antes e depois das virgulas.
-Tambem checa se o numero é maior que 999, ignorando-o e retorna erro se o numero for negativo pois nao aceita o caracter
-'-'.*/
+/** @brief A função SomaStringVirgula faz todos os testes ordenados pela especificaçoes do trabalho tendo como unico 
+*delimitador a virgula. Checa se a string_entrada tem tamanho no minimo 1, para caber o '\n', se ela termina em \n,
+*se é contituida de numeros, virgulas e '\n', se tem duas virgulas seguidas e se possui numero antes e depois das virgulas.
+*Tambem checa se o numero é maior que 999, ignorando-o e retorna erro se o numero for negativo pois nao aceita o caracter
+*'-'.
+*/
 int SomaStringVirgula(char * string_entrada){
   const int kAjusteNum = 48;
   int soma = 0,ndigitos = 0,nnum = 0,sep=2;

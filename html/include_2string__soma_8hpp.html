@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Doxygen_Trab1_MP: src/string_soma.cpp File Reference</title>
+<title>Doxygen_Trab1_MP: include/string_soma.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('string__soma_8cpp.html','');});
+$(document).ready(function(){initNavTree('include_2string__soma_8hpp.html','');});
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -88,43 +88,34 @@ $(document).ready(function(){initNavTree('string__soma_8cpp.html','');});
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">string_soma.cpp File Reference</div>  </div>
+<div class="title">string_soma.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Arquivo contendo as implementações das funções soma_string,ManipulaStringEntrada e DelimitadorViraVirgula.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="src_2string__soma_8hpp_source.html">string_soma.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;cstdio&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
 </div>
-<p><a href="string__soma_8cpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="include_2string__soma_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5584a11d7a161d9a35a2e76cb51681bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string__soma_8cpp.html#a5584a11d7a161d9a35a2e76cb51681bd">soma_string</a> (char *string_entrada)</td></tr>
-<tr class="memdesc:a5584a11d7a161d9a35a2e76cb51681bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">A função soma_string que serve para chamar a função ManipulaStringEntrada e a partir do resultado dessa função chamar a função SomaStringVirgula, e retorna o resultado desta ultima função chamada.  <a href="#a5584a11d7a161d9a35a2e76cb51681bd">More...</a><br /></td></tr>
+<tr class="memitem:a5584a11d7a161d9a35a2e76cb51681bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2string__soma_8hpp.html#a5584a11d7a161d9a35a2e76cb51681bd">soma_string</a> (char *string_entrada)</td></tr>
+<tr class="memdesc:a5584a11d7a161d9a35a2e76cb51681bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">funcao que recebe um ponteiro para char de entrada retorna a soma resultante da calculadora de strings  <a href="#a5584a11d7a161d9a35a2e76cb51681bd">More...</a><br /></td></tr>
 <tr class="separator:a5584a11d7a161d9a35a2e76cb51681bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a061c4cffef4c53dc487da5b9cb9bd5d9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string__soma_8cpp.html#a061c4cffef4c53dc487da5b9cb9bd5d9">ManipulaStringEntrada</a> (char *string_entrada)</td></tr>
-<tr class="memdesc:a061c4cffef4c53dc487da5b9cb9bd5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">a Função serve para receber a e separar se elas começam ou nao com delimitador, se elas começarem com delimitador chama a função DelimitadorViraVirgula para transformar os delimitadores em virgula e atualizar o formato da string_entrada para retornar a string_entrada. Caso a string nao comece com delimitador ela retorna a string_entrada sem precisar chamar a DelimitadorViraVirgula  <a href="#a061c4cffef4c53dc487da5b9cb9bd5d9">More...</a><br /></td></tr>
+<tr class="memitem:a67d501b1df57ff9bf704495f85e23701"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2string__soma_8hpp.html#a67d501b1df57ff9bf704495f85e23701">SomaStringVirgula</a> (char *new_string_entrada)</td></tr>
+<tr class="memdesc:a67d501b1df57ff9bf704495f85e23701"><td class="mdescLeft">&#160;</td><td class="mdescRight">funcao que valida a string_entrada recebida funcionando apenas para delimitador sendo virgula.  <a href="#a67d501b1df57ff9bf704495f85e23701">More...</a><br /></td></tr>
+<tr class="separator:a67d501b1df57ff9bf704495f85e23701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a061c4cffef4c53dc487da5b9cb9bd5d9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2string__soma_8hpp.html#a061c4cffef4c53dc487da5b9cb9bd5d9">ManipulaStringEntrada</a> (char *string_entrada)</td></tr>
+<tr class="memdesc:a061c4cffef4c53dc487da5b9cb9bd5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">funcao que recebe a string_entrada e retorna a string_entrada no formato que a SomaStringVirgula consegue validar.  <a href="#a061c4cffef4c53dc487da5b9cb9bd5d9">More...</a><br /></td></tr>
 <tr class="separator:a061c4cffef4c53dc487da5b9cb9bd5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fea14a498689c0d4faa3de91d03c99e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string__soma_8cpp.html#a4fea14a498689c0d4faa3de91d03c99e">DelimitadorViraVirgula</a> (int num_delimit, char *string_entrada)</td></tr>
+<tr class="memitem:a4fea14a498689c0d4faa3de91d03c99e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="include_2string__soma_8hpp.html#a4fea14a498689c0d4faa3de91d03c99e">DelimitadorViraVirgula</a> (int num_delimit, char *string_entrada)</td></tr>
 <tr class="memdesc:a4fea14a498689c0d4faa3de91d03c99e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A funcao DelimitadorViraVirgula recebe a string_entrada que declara novos delimitadores, armazena com uma alocação dinamica o primeiro delimitador, e varre a string_entrada copiando seu valor caracter a caracter em um char temporario (denominado string_temp), porem onde se encontra o delimitador, atualizando esse valor para virgula. Depois string_entrada recebe o valor dessa string_temp para que possa, pelo mesmo processo, analisar os delimitadores seguintes. Depois de tudo atualiza string_entrada para ela mesma, porem com seus valores apos o primeiro '<br />
 ' e retorna esse ponteiro para char.  <a href="#a4fea14a498689c0d4faa3de91d03c99e">More...</a><br /></td></tr>
 <tr class="separator:a4fea14a498689c0d4faa3de91d03c99e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec41742372b2b6cf29a3d0f2f2374483"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string__soma_8cpp.html#aec41742372b2b6cf29a3d0f2f2374483">SomaStringVirgula</a> (char *string_entrada)</td></tr>
-<tr class="memdesc:aec41742372b2b6cf29a3d0f2f2374483"><td class="mdescLeft">&#160;</td><td class="mdescRight">A função SomaStringVirgula faz todos os testes ordenados pela especificaçoes do trabalho tendo como unico delimitador a virgula. Checa se a string_entrada tem tamanho no minimo 1, para caber o '<br />
-', se ela termina em <br />
-, se é contituida de numeros, virgulas e '<br />
-', se tem duas virgulas seguidas e se possui numero antes e depois das virgulas. Tambem checa se o numero é maior que 999, ignorando-o e retorna erro se o numero for negativo pois nao aceita o caracter '-'.  <a href="#aec41742372b2b6cf29a3d0f2f2374483">More...</a><br /></td></tr>
-<tr class="separator:aec41742372b2b6cf29a3d0f2f2374483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arquivo contendo as implementações das funções soma_string,ManipulaStringEntrada e DelimitadorViraVirgula. </p>
-<dl class="section author"><dt>Author</dt><dd>Tomás Rosário Rosemberg </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>20/09/2017 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/trosemberg/Trabalho1MP">https://github.com/trosemberg/Trabalho1MP</a> </dd></dl>
-
-<p class="definition">Definition in file <a class="el" href="string__soma_8cpp_source.html">string_soma.cpp</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a4fea14a498689c0d4faa3de91d03c99e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4fea14a498689c0d4faa3de91d03c99e">&#9670;&nbsp;</a></span>DelimitadorViraVirgula()</h2>
 
@@ -153,7 +144,6 @@ Functions</h2></td></tr>
 
 <p>A funcao DelimitadorViraVirgula recebe a string_entrada que declara novos delimitadores, armazena com uma alocação dinamica o primeiro delimitador, e varre a string_entrada copiando seu valor caracter a caracter em um char temporario (denominado string_temp), porem onde se encontra o delimitador, atualizando esse valor para virgula. Depois string_entrada recebe o valor dessa string_temp para que possa, pelo mesmo processo, analisar os delimitadores seguintes. Depois de tudo atualiza string_entrada para ela mesma, porem com seus valores apos o primeiro '<br />
 ' e retorna esse ponteiro para char. </p>
-<p>funcao que caso a string_entrada seja constituida de declaracao de novos delimitadores, os tranforma em virgula e formata a string_entrada para o formato desejado.</p>
 <p>funcao que caso a string_entrada seja constituida de declaracao de novos delimitadores, os tranforma em virgula e formata a string_entrada para o formato desejado </p>
 
 <p class="definition">Definition at line <a class="el" href="string__soma_8cpp_source.html#l00069">69</a> of file <a class="el" href="string__soma_8cpp_source.html">string_soma.cpp</a>.</p>
@@ -176,7 +166,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>a Função serve para receber a e separar se elas começam ou nao com delimitador, se elas começarem com delimitador chama a função DelimitadorViraVirgula para transformar os delimitadores em virgula e atualizar o formato da string_entrada para retornar a string_entrada. Caso a string nao comece com delimitador ela retorna a string_entrada sem precisar chamar a DelimitadorViraVirgula </p>
+<p>funcao que recebe a string_entrada e retorna a string_entrada no formato que a SomaStringVirgula consegue validar. </p>
 <p>funcao que recebe a string_entrada e retorna a string_entrada no formato que a SomaStringVirgula consegue validar. </p>
 
 <p class="definition">Definition at line <a class="el" href="string__soma_8cpp_source.html#l00033">33</a> of file <a class="el" href="string__soma_8cpp_source.html">string_soma.cpp</a>.</p>
@@ -199,15 +189,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A função soma_string que serve para chamar a função ManipulaStringEntrada e a partir do resultado dessa função chamar a função SomaStringVirgula, e retorna o resultado desta ultima função chamada. </p>
+<p>funcao que recebe um ponteiro para char de entrada retorna a soma resultante da calculadora de strings </p>
 <p>funcao que recebe um ponteiro para char de entrada retorna a soma resultante da calculadora de strings </p>
 
 <p class="definition">Definition at line <a class="el" href="string__soma_8cpp_source.html#l00016">16</a> of file <a class="el" href="string__soma_8cpp_source.html">string_soma.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aec41742372b2b6cf29a3d0f2f2374483"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec41742372b2b6cf29a3d0f2f2374483">&#9670;&nbsp;</a></span>SomaStringVirgula()</h2>
+<a id="a67d501b1df57ff9bf704495f85e23701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d501b1df57ff9bf704495f85e23701">&#9670;&nbsp;</a></span>SomaStringVirgula()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,10 +212,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A função SomaStringVirgula faz todos os testes ordenados pela especificaçoes do trabalho tendo como unico delimitador a virgula. Checa se a string_entrada tem tamanho no minimo 1, para caber o '<br />
-', se ela termina em <br />
-, se é contituida de numeros, virgulas e '<br />
-', se tem duas virgulas seguidas e se possui numero antes e depois das virgulas. Tambem checa se o numero é maior que 999, ignorando-o e retorna erro se o numero for negativo pois nao aceita o caracter '-'. </p>
+<p>funcao que valida a string_entrada recebida funcionando apenas para delimitador sendo virgula. </p>
 <p>funcao que valida a string_entrada recebida funcionando apenas para delimitador sendo virgula. </p>
 
 <p class="definition">Definition at line <a class="el" href="string__soma_8cpp_source.html#l00130">130</a> of file <a class="el" href="string__soma_8cpp_source.html">string_soma.cpp</a>.</p>
@@ -237,7 +224,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="string__soma_8cpp.html">string_soma.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="include_2string__soma_8hpp.html">string_soma.hpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>

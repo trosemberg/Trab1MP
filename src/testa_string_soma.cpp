@@ -1,3 +1,15 @@
+/**
+ * @file testa_string_soma.cpp
+ * @author Tomás Rosário Rosemberg
+ * @date 20/09/2017
+ * @brief Arquivo contendo os testes do Trabalho 1 de Metodos de Programacao 2/2017
+ *
+ *  
+ *
+ * @see https://github.com/trosemberg/Trabalho1MP
+ * 
+ */
+
 #include "string_soma.cpp"
 #include <gtest/gtest.h>
 
