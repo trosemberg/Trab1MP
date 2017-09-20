@@ -1,5 +1,33 @@
 Trabalho 1 de Metodos de programação 2/2017
 Professor: Jan Correa
 
+O arquivo TrabalhoEspecs.pdf são as especificações do trabalho a ser feito.
+Na pasta src se encontram os códigos das funções em arquivos .cpp.
+Na pasta include se encontra o header da função string_soma no formato .hpp.
+
+O make file se encontra na pagina Trabalho1MP e possui varias funções interessantes listadas abaixo:
+
+1) Ao se digita "make" compila o executavel testa_soma_string_stdin conforme especificado no trabalho
+e se cria os arquivos entrada.txt e saida.txt que funcionarão como input e output do trabalho respectivamente.
+
+2) Ao se digitar "make run" o executavel roda com entrada e saida como entrada.txt e saida.txt respectivamente.
+
+3) Ao se digitar "make cppcheck" é executado o cppcheck nos arquivos string_soma.cpp testa_soma_string_stdin.cpp que se encontram no diretorio src.
+
+4) Ao digitar "make gteste" é criado o executavel do arquivo testa_string_soma.cpp onde se encontram os testes que validam o trabalho.
+
+5) Ao digitar "make rungteste" se roda o executavel do testa_string_soma.cpp demonstrando que todos os testes funcionam conforme o esperado. Esta função deve ser executada apenas se o comando "make gteste" ja tiver sido executado.
+
+6) Ao digitar "make valgrind", roda-se o valgrind no executavel do testa_string_soma. O valgrind mostrará que possui 72kbytes que podem ser acessados ainda, porém isso é falha da biblioteca iostream e namespace std, e não trabalho feito. Também deve ser executado apenas se o comando "make gteste" já tiver sido executado. 
+
+7) Ao digitar "make gcov" roda o gcov na função string_soma.cpp utilizando os testes criados em testa_string_soma.cpp e nos fornece o percentual do arquivo string_soma.cpp que é coberto pelos testes. Esse comando deve ser executado apenas se "make gteste" e "make rungteste" ja tiverem sidos executados. Os resultados do gcov e todos os arquivos necessarios para ele rodar são movidos para a pasta ./src/gcov .
+
+8) Ao digitar "make clean" se limpa todos os executaveis gerados, os arquivos na pasta gcov e os arquivos objetos que se encontram na pasta ./src/obj.
+
+
+
+
+
+
 Tomás Rosário Rosemberg 14/0087567
 Aluno do Curso "Engenharia da Computação" UnB
