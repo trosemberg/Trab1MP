@@ -4,6 +4,8 @@ Professor: Jan Correa
 O arquivo TrabalhoEspecs.pdf são as especificações do trabalho a ser feito.
 Na pasta src se encontram os códigos das funções em arquivos .cpp.
 Na pasta include se encontra o header da função string_soma no formato .hpp.
+O trabalho todo se encontra no https://github.com/trosemberg/Trabalho1MP 
+O arquivo Especificações_dos_testes.txt se encontra no diretorio ./ e contem as especificações dos testes feitos e o que eles representam.
 
 O make file se encontra na pagina Trabalho1MP e possui varias funções interessantes listadas abaixo:
 
