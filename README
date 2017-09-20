@@ -24,8 +24,7 @@ e se cria os arquivos entrada.txt e saida.txt que funcionarão como input e outp
 
 8) Ao digitar "make clean" se limpa todos os executaveis gerados, os arquivos na pasta gcov e os arquivos objetos que se encontram na pasta ./src/obj.
 
-
-
+9) Ao digitar "make help", aparece todas as funcionalidades do makefile, com seus respectivos comandos.
 
 
 
