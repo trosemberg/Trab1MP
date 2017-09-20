@@ -103,7 +103,7 @@ char * delimitador_vira_virgula(int num_delimit, char * string_entrada){
 /*A função soma string virgula funciona da seguinte forma, primeiramente checa-se se a string passada possui no minimo o tamanho para se caber a "\n"
 */
 int soma_string_virgula(char * string_entrada){
-  const int ajustenum = 48;
+  const int kAjusteNum = 48;
   int soma = 0,ndigitos = 0,nnum = 0,sep=2;
   //tamstr é uma variavel que armazena o tamanho da string de entrada, desta forma 
   //ndigitos é uma variavel usada para identificar se o numero passado esta na casa das unidades, dezenas ou centenas.
@@ -131,7 +131,7 @@ int soma_string_virgula(char * string_entrada){
     }else{
       if(ndigitos<4){//checa se o numero tem menos de 4digitos, considerando que numeros maiores que 1000 serão ignorados
         for(int j = 0; j<ndigitos;j++){
-          soma = soma + ((int)string_entrada[i-j-1] - ajustenum)*pow(10,j);
+          soma = soma + ((int)string_entrada[i-j-1] - kAjusteNum)*pow(10,j);
         }
       }
       ndigitos = 0;//zera o numero de digitos do numero analisado para que o proximos possa ser
