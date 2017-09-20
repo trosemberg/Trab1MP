@@ -1,7 +1,7 @@
 #include "string_soma.hpp"
 
-/*A função soma_string  que serve para chamar a função transforma_delimitador e a partir do resultado dessa função chamar a função soma_string_virgula,
-e retorna o resultado desta ultima função chamada.*/
+/*A função soma_string que serve para chamar a função ManipulaStringEntrada e a partir do resultado dessa função chamar a função 
+SomaStringVirgula, e retorna o resultado desta ultima função chamada.*/
 int soma_string(char * string_entrada ){
   int tamstr = strlen(string_entrada);
   if (tamstr < 1) {//saber se o tamanho da string é pelo menos equivalente a "\n"
@@ -14,7 +14,10 @@ int soma_string(char * string_entrada ){
   return soma;
 }
 
-/*a Função serve para receber a string com delimitador e fazer alterações nele para que,  */
+/*a Função serve para receber a e separar se elas começam ou nao com delimitador, se elas começarem com delimitador
+chama a função DelimitadorViraVirgula para transformar os delimitadores em virgula e atualizar o formato da string_entrada
+para retornar a string_entrada. Caso a string nao comece com delimitador ela retorna a string_entrada sem precisar 
+chamar a DelimitadorViraVirgula*/
 char * ManipulaStringEntrada(char * string_entrada){
   int num_delimit = 0, pos_ult_colch = 0, flag_colch = 0;
   //a variavel flag_colch é setada para 1 ao encontrar o primeiro "\n" se a função tiver novos delimitadores, para que se for encontrado algum colchete apos
@@ -100,8 +103,11 @@ char * DelimitadorViraVirgula(int num_delimit, char * string_entrada){
   return string_entrada;
 }
 
-/*A função soma string virgula funciona da seguinte forma, primeiramente checa-se se a string passada possui no minimo o tamanho para se caber a "\n"
-*/
+/*A função SomaStringVirgula faz todos os testes ordenados pela especificaçoes do trabalho tendo como unico 
+delimitador a virgula. Checa se a string_entrada tem tamanho no minimo 1, para caber o '\n', se ela termina em \n,
+se é contituida de numeros, virgulas e '\n', se tem duas virgulas seguidas e se possui numero antes e depois das virgulas.
+Tambem checa se o numero é maior que 999, ignorando-o e retorna erro se o numero for negativo pois nao aceita o caracter
+'-'.*/
 int SomaStringVirgula(char * string_entrada){
   const int kAjusteNum = 48;
   int soma = 0,ndigitos = 0,nnum = 0,sep=2;
@@ -119,8 +125,8 @@ int SomaStringVirgula(char * string_entrada){
   }
   for (int i = 0; i < tamstr; i++) {//esse for varre toda a string passada para a função.
     if ((string_entrada[i] >= '0') && (string_entrada [i] <= '9')) { //checa se a posição atual do array contem um numero
-      sep=0;//se contiver numero, a variavel sep que indica a quantidade de separadores seguidos é atualizada para 0
-      ndigitos++;//a variavel ndigitos é incrementado para que seja possivel saber o tamanho dos numeros.
+      sep=0;              //se contiver numero, a variavel sep que indica a quantidade de separadores seguidos é atualizada para 0
+      ndigitos++;         //a variavel ndigitos é incrementado para que seja possivel saber o tamanho dos numeros.
       if (ndigitos == 1) {//sempre que o numero de digitos for de 1, o numero de numeros é incrementado para que seja possivel saber quantos numeros estao sendo somados
         nnum++;
       }
