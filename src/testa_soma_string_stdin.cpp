@@ -4,7 +4,7 @@ using namespace std;
 
 
 int main(){
-char string_entrada[10000],temp1[10000];
+char string_entrada[10000] = "",temp1[10000];
 while(scanf("%c",temp1)!=EOF){
 	strcat(string_entrada,temp1);
 } 

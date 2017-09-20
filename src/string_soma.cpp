@@ -40,12 +40,12 @@ char * manipula_string_entrada(char * string_entrada){
 			strcpy(string_entrada,"n");
 			return	string_entrada;
 		}
-		string_entrada = delimitador_vira_virgula(string_entrada, num_delimit);
+		string_entrada = delimitador_vira_virgula(num_delimit, string_entrada);
 	}
 	return string_entrada;
 }
 
-char * delimitador_vira_virgula(char * string_entrada, int num_delimit){
+char * delimitador_vira_virgula(int num_delimit, char * string_entrada){
 	int  flag_new = 0, flag_subst = 0,tam_delimit = 0, temp = 0;
 	char * delimitador;
 	char string_temp[strlen(string_entrada+1)];
