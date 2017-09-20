@@ -63,7 +63,7 @@ char * DelimitadorViraVirgula(int num_delimit, char * string_entrada){
         flag_new = 1;//fala que foi alocado dinamicamente
         delimitador[j] = string_entrada[temp - tam_delimit + j];
        }
-      for (int k = i ; k < tamstr; k ++ ) {//varre todo o resto do array atualizando o delimitador para virgula 
+      for (int k = i ; k < tamstr; k++ ) {//varre todo o resto do array atualizando o delimitador para virgula 
         if (string_entrada[k] == delimitador[0]) {//achou um lugar pra atualizar o delimitador
           flag_subst = 1;//indica que havera substituição do delimitador pela virgula
           for (int l = 0; l < tam_delimit; l++) { //for serve para checar se era o delimitador ou era algo que parecia ser o delimitador
@@ -93,8 +93,8 @@ char * DelimitadorViraVirgula(int num_delimit, char * string_entrada){
     tamstr = strlen(string_temp);
     strcpy(string_entrada,string_temp);
   }
-  for (int i = (3+3*num_delimit); i <= tamstr; i++) {
-    string_temp[i - 3-3*num_delimit] = string_entrada[i];
+  for (int i = (3 + 3 * num_delimit); i <= tamstr; i++) {
+    string_temp[i - 3 - 3 * num_delimit] = string_entrada[i];
   }
   strcpy(string_entrada,string_temp);
   return string_entrada;
@@ -118,31 +118,31 @@ int SomaStringVirgula(char * string_entrada){
     return -1;
   }
   for (int i = 0; i < tamstr; i++) {//esse for varre toda a string passada para a função.
-    if ((string_entrada[i]>='0') && (string_entrada [i]<='9')) { //checa se a posição atual do array contem um numero
+    if ((string_entrada[i] >= '0') && (string_entrada [i] <= '9')) { //checa se a posição atual do array contem um numero
       sep=0;//se contiver numero, a variavel sep que indica a quantidade de separadores seguidos é atualizada para 0
       ndigitos++;//a variavel ndigitos é incrementado para que seja possivel saber o tamanho dos numeros.
       if (ndigitos == 1) {//sempre que o numero de digitos for de 1, o numero de numeros é incrementado para que seja possivel saber quantos numeros estao sendo somados
         nnum++;
       }
-    } else if ((string_entrada[i]!=',') && (string_entrada[i]!='\n')) {
+    } else if ((string_entrada[i] != ',') && (string_entrada[i] != '\n')) {
       return -1;//se a posição do array nao contiver nenhum numero, checa se ela tem uma virgula ou um "\" de um "\n" ou um "n" do "\n"
-    } else if(string_entrada[i]==',' && sep != 0) {//checa a presença de duas virgulas sem numero entre elas ou se a string recebida começou com delimitador
+    } else if(string_entrada[i] == ',' && sep != 0) {//checa a presença de duas virgulas sem numero entre elas ou se a string recebida começou com delimitador
       return -1;
     } else{
-      if (ndigitos<4) {//checa se o numero tem menos de 4digitos, considerando que numeros maiores que 1000 serão ignorados
+      if (ndigitos < 4) {//checa se o numero tem menos de 4digitos, considerando que numeros maiores que 1000 serão ignorados
         for(int j = 0; j<ndigitos; j++) {
-          soma = soma + ((int)string_entrada[i-j-1] - kAjusteNum)*pow(10,j);
+          soma = soma + ((int)string_entrada[i - j - 1] - kAjusteNum) * pow(10,j);
         }
       }
       ndigitos = 0;//zera o numero de digitos do numero analisado para que o proximos possa ser
     }
-    if (string_entrada[i]=='\n') {
+    if (string_entrada[i] == '\n') {
       nnum = 0;//aqui se é checado se a posição atual do array é um"\n" para que se zere a quantidade de numeros nessa linha
     }
-    if (string_entrada[i]==',') {//diz que a posição atual é uma virgula para que na proxima iteração possa se saber se ha virgulas seguidas
+    if (string_entrada[i] == ',') {//diz que a posição atual é uma virgula para que na proxima iteração possa se saber se ha virgulas seguidas
       sep = 1;
     }
-    if( nnum>3) {//checa se a quantidade de numeros na mesma linha é maior que 3, pois se for, deve-se retornar -1.
+    if( nnum > 3) {//checa se a quantidade de numeros na mesma linha é maior que 3, pois se for, deve-se retornar -1.
       return -1;
     }
   }
