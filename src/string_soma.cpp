@@ -9,13 +9,13 @@ int soma_string(char * string_entrada ){
   }else if(string_entrada[tamstr-1]!= '\n'){ //checa se tudo termina com "\n"
     return -1;
   }
-  string_entrada = manipula_string_entrada(string_entrada);
-  int soma = soma_string_virgula(string_entrada);
+  string_entrada = ManipulaStringEntrada(string_entrada);
+  int soma = SomaStringVirgula(string_entrada);
   return soma;
 }
 
 /*a Função serve para receber a string com delimitador e fazer alterações nele para que,  */
-char * manipula_string_entrada(char * string_entrada){
+char * ManipulaStringEntrada(char * string_entrada){
   int num_delimit = 0, pos_ult_colch = 0, flag_colch = 0;
   //a variavel flag_colch é setada para 1 ao encontrar o primeiro "\n" se a função tiver novos delimitadores, para que se for encontrado algum colchete apos
   //esse "\n" ja retorne uma saida invalida.Pois se isso nao for feito, poderia acarretar em news sem delete.
@@ -40,12 +40,12 @@ char * manipula_string_entrada(char * string_entrada){
       strcpy(string_entrada,"n");
       return string_entrada;
     }
-    string_entrada = delimitador_vira_virgula(num_delimit, string_entrada);
+    string_entrada = DelimitadorViraVirgula(num_delimit, string_entrada);
   }
   return string_entrada;
 }
 
-char * delimitador_vira_virgula(int num_delimit, char * string_entrada){
+char * DelimitadorViraVirgula(int num_delimit, char * string_entrada){
   int  flag_new = 0, flag_subst = 0,tam_delimit = 0, temp = 0;
   char * delimitador;
   char string_temp[strlen(string_entrada+1)];
@@ -102,7 +102,7 @@ char * delimitador_vira_virgula(int num_delimit, char * string_entrada){
 
 /*A função soma string virgula funciona da seguinte forma, primeiramente checa-se se a string passada possui no minimo o tamanho para se caber a "\n"
 */
-int soma_string_virgula(char * string_entrada){
+int SomaStringVirgula(char * string_entrada){
   const int kAjusteNum = 48;
   int soma = 0,ndigitos = 0,nnum = 0,sep=2;
   //tamstr é uma variavel que armazena o tamanho da string de entrada, desta forma 
